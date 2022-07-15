@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party libs
     "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",
     "django_filters",
     "versatileimagefield",
     "corsheaders",
