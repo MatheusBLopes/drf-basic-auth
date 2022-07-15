@@ -9,9 +9,15 @@ python = "^3.10"
 Django = "^4.0.6"
 prettyconf = "^2.2.1"
 djangorestframework = "^3.13.1"
+drf-flex-fields = "^0.9.8"
+django-filter = "^22.1"
+django-versatileimagefield = "^2.2"
+django-cors-headers = "^3.13.0"
+djangorestframework-simplejwt = "^5.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+black = {version = "^22.6.0", allow-prereleases = true}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
