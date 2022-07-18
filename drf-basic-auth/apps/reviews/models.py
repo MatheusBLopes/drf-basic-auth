@@ -1,7 +1,6 @@
-from distutils.command.upload import upload
 from versatileimagefield.fields import VersatileImageField, PPOIField
 from django.db import models
-from django.contrib.auth.models import User
+from apps.core.models import UUIDUser as User
 
 class Company(models.Model):
     name = models.CharField(max_length=255)

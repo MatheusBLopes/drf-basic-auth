@@ -1,6 +1,6 @@
 from rest_flex_fields import FlexFieldsModelSerializer
 from .models import Image, Product, Category, Company, ProductSize, ProductSite, Comment
-from django.contrib.auth.models import User
+from apps.core.models import UUIDUser as User
 from versatileimagefield.serializers import VersatileImageFieldSerializer
 
 

@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from apps.core.models import UUIDUser as User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
