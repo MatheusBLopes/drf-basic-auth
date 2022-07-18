@@ -156,7 +156,14 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
+
 SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
-    'ROTATE_REFRESH_TOKENS': True,
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': config("JWT_ALGORITHM", default="HS256"),
+    'SIGNING_KEY': config("JWT_SECRET_KEY", default=""),
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
