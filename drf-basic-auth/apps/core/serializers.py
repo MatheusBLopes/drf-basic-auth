@@ -73,18 +73,12 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         return attrs
     
     def validate_old_password(self, value):
-        user = self.context['request'].user
-        if not user.check_password(value):
+        if not self.instance.check_password(value):
             raise serializers.ValidationError({"old_password": "Old password is not correct"})
         
         return value
     
     def update(self, instance, validated_data):
-        user = self.context['request'].user
-
-        if user.pk != instance.pk:
-            raise serializers.ValidationError({"authorize": "You dont have permission for this user"})
-
         instance.set_password(validated_data['password'])
         instance.save()
 

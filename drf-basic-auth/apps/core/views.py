@@ -1,3 +1,4 @@
+from xml.dom import ValidationErr
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import UpdateUserSerializer, ChangePasswordSerializer, RegisterSerializer
 from rest_framework import generics, status
@@ -13,10 +14,20 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
-class ChangePasswordView(generics.UpdateAPIView):
-    queryset = User.objects.all()
+class ChangePasswordView(APIView):
     permission_classes = (IsAuthenticated, )
-    serializer_class = ChangePasswordSerializer
+
+    def put(self, request):
+        user = User.objects.filter(pk=request.auth["user_id"]).first()
+        serializer = ChangePasswordSerializer(user, data=request.data)
+        serializer.validate(request.data)
+
+        if serializer.is_valid():
+            serializer.update(user, request.data)
+            return Response(status=status.HTTP_200_OK)
+
+
+        return Response(data=serializer.errors["old_password"], status=status.HTTP_400_BAD_REQUEST)
 
 
 class UpdateProfileView(generics.UpdateAPIView):
